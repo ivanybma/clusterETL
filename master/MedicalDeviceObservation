@@ -1,0 +1,139 @@
+{
+            "resourceType" : "Observation",
+            "id" : "5cb21f4c-9td2-42a6-0345-7079693db7b6",
+            "meta" : {
+                "versionId" : "1",
+                "lastUpdated" : "2017-09-25T09:50:37.329Z",
+                "tag" : [ {
+                    "system" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/sourceUpdateFlag",
+                    "code" : "consecutive"
+                }, {
+                    "system" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/isValidated",
+                    "code" : "validated"
+                }, {
+                    "system" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/dataEntryClassification",
+                    "code" : "manual"
+                } ]
+            },
+            "extension" : [ {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/lastMessageID",
+                "valueString" : "M003"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/sourceTime_GMT",
+                "valueDateTime" : "2017-08-29T09:50:11"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/sourceTime_TZ",
+                "valueString" : "GMT"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/UUID",
+                "valueString" : "UUID_0922_TevaDev_S6_002"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/receiveTime_GMT",
+                "valueDateTime" : "2017-09-25T09:50:31"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/receiveTime_TZ",
+                "valueString" : "GMT+00:00"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/releaseVersion",
+                "valueString" : "2.0"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/requestID",
+                "valueString" : "07ae0d01-0d69-4d82-86c9-617b5a30997d"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/MQMsgID",
+                "valueString" : "4e4beacd-1681-4737-8e6a-722245d7cc0b"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/sourceObjectName",
+                "valueString" : "medical_device_info"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/documentStatus",
+                "valueString" : "Success"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/appName",
+                "valueString" : "eProAirStudy"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/appVersionNumber",
+                "valueString" : "1.0"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/1.0/studyid",
+                "valueString" : "MCBX"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/1.0/siteid",
+                "valueString" : "SiteX1"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/ptnIdentifier",
+                "valueString" : "6cd3a2f5-6a52-492e-891d-cd02465945d8"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/lastConnectionDate",
+                "valueDateTime" : "2016-11-01T00:00:00"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/1.0/patientid",
+                "valueString" : "6cd3a2f5-6a52-492e-891d-cd02465945d8"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/doseCount",
+                "valueString" : "2"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/ck/ptnIDmeddevIDrsrceTystdID",
+                "valueString" : "6cd3a2f5-6a52-492e-891d-cd02465945d8_0922_TevaDev_S6_002-MedDev-1_Teva-MedicalDeviceObservation_MCBX"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/ck/ptnIDmeddevIDrsrceTyappverIDappNMstdID",
+                "valueString" : "6cd3a2f5-6a52-492e-891d-cd02465945d8_0922_TevaDev_S6_002-MedDev-1_Teva-MedicalDeviceObservation_1.0_eProAirStudy_MCBX"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/ck/ptnIDmeddevIDrsrceTyappNMstdID",
+                "valueString" : "6cd3a2f5-6a52-492e-891d-cd02465945d8_0922_TevaDev_S6_002-MedDev-1_Teva-MedicalDeviceObservation_eProAirStudy_MCBX"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/apiExecutionMode",
+                "valueString" : "asynchronous"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/serverTimeOffset",
+                "valueString" : "0"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/ck/ptnIDrsrceTysiteIDstdID",
+                "valueString" : "6cd3a2f5-6a52-492e-891d-cd02465945d8_Teva-MedicalDeviceObservation_SiteX1_MCBX"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/ck/ptnIDrsrceTyappverIDappNMsiteIDstdID",
+                "valueString" : "6cd3a2f5-6a52-492e-891d-cd02465945d8_Teva-MedicalDeviceObservation_1.0_eProAirStudy_SiteX1MCBX"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/ck/ptnIDrsrceTyappNMsiteIDstdID",
+                "valueString" : "6cd3a2f5-6a52-492e-891d-cd02465945d8_Teva-MedicalDeviceObservation_eProAirStudy_SiteX1_MCBX"
+            }, {
+                "url" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/resourceName",
+                "valueString" : "Teva-MedicalDeviceObservation"
+            } ],
+            "identifier" : [ {
+                "type" : {
+                    "coding" : [ {
+                        "system" : "http://hl7.org/fhir/identifier-type",
+                        "code" : "SNO",
+                        "display" : "Serial Number"
+                    } ]
+                },
+                "system" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/r1/inhalerSerialNumber",
+                "value" : "0922_TevaDev_S6_002-MedDev-1"
+            } ],
+            "status" : "registered",
+            "category" : {
+                "coding" : [ {
+                    "system" : "https://hl7.org/fhir/observation-category",
+                    "code" : "Device Dosage Observation",
+                    "display" : "Device Dosage-Observation"
+                } ]
+            },
+            "code" : {
+                "coding" : [ {
+                    "system" : "http://www.ibm.com/watsonhealth/fhir/extensions/whc-lsf/v1/deviceInhaler",
+                    "code" : "100001",
+                    "display" : "Doses Info for Medical Device"
+                } ]
+            },
+            "subject" : {
+                "reference" : "Device/2f785f83-6b45-4cd3-9cb5-e4ce1e6711ea"
+            },
+            "effectiveDateTime" : "2017-08-29T09:50:12",
+            "valueQuantity" : {
+                "value" : 40,
+                "unit" : "puff",
+                "system" : "http://unitofmeasure.org/remainingDoseCount"
+            }
+        }
+    }

@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# all nodes
+sudo apt-get install scala
+wget http://apache.mirrors.tds.net/spark/spark-2.0.2/spark-2.0.2-bin-hadoop2.7.tgz -P ~/Downloads
+sudo tar zxvf ~/Downloads/spark-* -C /usr/local
+sudo mv /usr/local/spark-* /usr/local/spark
+echo "export SPARK_HOME=/usr/local/spark" >> ~/.profile
+echo "export PATH=$PATH:/usr/local/spark/bin" >> ~/.profile
+source ~/.profile
+sudo chown -R ivanybma $SPARK_HOME
+####cp $SPARK_HOME/conf/spark-env.sh.template $SPARK_HOME/conf/spark-env.sh
+sed '22iexport export JAVA_HOME=/usr \nexport SPARK_PUBLIC_DNS=”current_node_public_dns” \nexport SPARK_WORKER_CORES=6' $SPARK_HOME/conf/spark-env.sh.template  > $SPARK_HOME/conf/spark-env.sh
+
+# master only
+#touch $SPARK_HOME/conf/slaves
+

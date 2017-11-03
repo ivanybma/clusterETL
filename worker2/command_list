@@ -1,0 +1,106 @@
+#
+sudo apt-get update
+sudo apt-get install git
+sudo add-apt-repository ppa:openjdk-r/ppa  
+sudo apt-get install openjdk-7-jre  
+wget http://apache.mirrors.tds.net/hadoop/common/hadoop-2.7.1/hadoop-2.7.1.tar.gz -P ~/Downloads
+sudo tar zxvf ~/Downloads/hadoop-* -C /usr/local
+sudo mv /usr/local/hadoop-* /usr/local/hadoop
+
+echo "export JAVA_HOME=/usr" >> ~/.profile
+echo "export PATH=$PATH:/usr/bin" >> ~/.profile
+echo "export HADOOP_HOME=/usr/local/hadoop" >> ~/.profile
+echo "export PATH=$PATH:/usr/local/hadoop/bin" >> ~/.profile
+echo "export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop" >> ~/.profile
+. ~/.profile
+
+#allnodes:
+sudo sed -i -e "25s/\(JAVA_HOME=\).*/\1\/usr/" $HADOOP_CONF_DIR/hadoop-env.sh
+echo "<property>"  >> dmy
+echo "<name>fs.defaultFS</name>" >>dmy
+echo "<value>hdfs://namenode_public_dns:9000</value>" >>dmy
+echo "</property>" >>dmy
+sudo sed -i '/<configuration>/r dmy' $HADOOP_CONF_DIR/core-site.xml
+rm dmy
+
+echo "<property>" >> dmy
+echo "<name>yarn.nodemanager.aux-services</name>" >> dmy
+echo "<value>mapreduce_shuffle</value>" >> dmy
+echo "</property>" >> dmy
+echo "<property>" >> dmy
+echo "<name>yarn.nodemanager.auxservices.mapreduce.shuffle.class</name>" >> dmy
+echo "<value>org.apache.hadoop.mapred.ShuffleHandler</value>" >> dmy
+echo "</property>" >> dmy
+echo "<property>" >> dmy
+echo "<name>yarn.resourcemanager.hostname</name>" >> dmy
+echo "<value>namenode_public_dns</value>" >> dmy
+echo "</property>" >> dmy
+sudo sed -i '/<configuration>/r dmy' $HADOOP_CONF_DIR/yarn-site.xml
+rm dmy
+
+sudo cp $HADOOP_CONF_DIR/mapred-site.xml.template $HADOOP_CONF_DIR/mapred-site.xml
+
+#extract the current inet ip as host name
+export hostip=$(ifconfig | grep "inet " | awk -F'[: ]+' '{ print $4 ;exit }') 
+export realhostip=$hostip
+export hostip=$(echo $hostip | tr . -)
+
+#change the host name with hostip
+sudo hostname $hostip
+# do need to use double quote in case you want to use variable inside sed
+sudo sed -i "s/ubuntu/$hostip/" /etc/hosts
+echo $hostip > /etc/hostname
+
+echo "<property>" >> dmy
+echo "<name>mapreduce.jobtracker.address</name>" >> dmy
+echo "<value>namenode_public_dns:54311</value>" >> dmy
+echo "</property>" >> dmy
+echo "<property>" >> dmy
+echo "<name>mapreduce.framework.name</name>" >> dmy
+echo "<value>yarn</value>" >> dmy
+echo "</property>" >> dmy
+sed -i '/<configuration>/r dmy' $HADOOP_CONF_DIR/mapred-site.xml
+rm dmy
+
+#master only:
+#echo $realhostip  $hostip >> dmy
+#echo "ipxxxxxxx worker1" >> dmy
+#echo "ipxxxxxxx worker2" >> dmy
+#sudo sed -i "/.*$hostip/r dmy" /etc/hosts
+#rm dmy
+
+#echo "<property>" >> dmy
+#echo "<name>dfs.replication</name>" >> dmy
+#echo "<value>3</value>" >> dmy
+#echo "</property>" >> dmy
+#echo "<property>" >> dmy
+#echo "<name>dfs.namenode.name.dir</name>" >> dmy
+#echo "<value>file:///usr/local/hadoop/hadoop_data/hdfs/namenode</value>" >> dmy
+#echo "</property>" >> dmy
+#sed -i '/<configuration>/r dmy' $HADOOP_CONF_DIR/hdfs-site.xml
+#rm dmy
+
+#sudo mkdir -p $HADOOP_HOME/hadoop_data/hdfs/namenode
+#sudo touch $HADOOP_CONF_DIR/masters
+
+#echo $hostip >> $HADOOP_CONF_DIR/masters
+
+# we still need to update the $HADOOP_CONF_DIR/slaves file with worker1/2 hostname, but this will be done by another scirpt which will be ran after we know the hostname for all workers
+
+#sudo chown -R ivanybma $HADOOP_HOME
+
+#worker only
+echo "<property>" >> dmy
+echo "<name>dfs.replication</name>" >> dmy
+echo "<value>3</value>" >> dmy
+echo "</property>" >> dmy
+echo "<property>" >> dmy
+echo "<name>dfs.datanode.data.dir</name>" >> dmy
+echo "<value>file:///usr/local/hadoop/hadoop_data/hdfs/datanode</value>" >> dmy
+echo "</property>" >> dmy
+sed -i '/<configuration>/r dmy' $HADOOP_CONF_DIR/hdfs-site.xml
+rm dmy
+
+sudo mkdir -p $HADOOP_HOME/hadoop_data/hdfs/datanode
+
+sudo chown -R ivanybma $HADOOP_HOME

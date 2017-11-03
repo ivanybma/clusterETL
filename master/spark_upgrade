@@ -1,0 +1,14 @@
+#!/bin/bash
+#all nodes
+wget http://apache.mirrors.tds.net/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tgz -P ~/Downloads
+sudo mv /usr/local/spark /usr/loal/spark_2.0
+sudo tar zxvf ~/Downloads/spark-2.2* -C /usr/local
+sudo mv /usr/local/spark-2.2* /usr/local/spark
+sudo cp /usr/local/spark_2.0/conf/spark-env.sh $SPARK_HOME/conf/
+sudo cp /usr/local/spark_2.0/conf/slaves $SPARK_HOME/conf/
+sudo chown -R ivanybma $SPARK_HOME
+#below is to upgrade java to 1.8, or else spark 2.2 cannot run
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-set-default
+
