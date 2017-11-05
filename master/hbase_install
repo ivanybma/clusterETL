@@ -1,0 +1,55 @@
+#!/bin/bash
+#
+# all nodes
+wget http://apache.mirrors.ionfish.org/hbase/stable/hbase-1.2.6-bin.tar.gz -P ~/Downloads
+sudo tar zxvf ~/Downloads/hbase-1.2.6-bin.tar.gz -C /usr/local
+sudo mv /usr/local/hbase* /usr/local/HBase
+echo "export HBASE_HOME=/usr/local/HBase" >> ~/.profile
+echo "export PATH=$PATH:/usr/local/HBase/bin" >> ~/.profile
+source ~/.profile
+sudo chown -R ivanybma /usr/local/HBase
+sudo chown -R ivanybma /var
+sudo sed -i -e "s/# export JAVA_HOME=.*/export JAVA_HOME=\/usr/" /usr/local/HBase/conf/hbase-env.sh
+sudo sed -i -e "s/# export HBASE_MANAGES_ZK=true/export HBASE_MANAGES_ZK=true/" /usr/local/HBase/conf/hbase-env.sh
+sudo sed -i -e "s/# export HBASE_PID_DIR=\/var\/hadoop\/pids/export HBASE_PID_DIR=\/var\/hadoop\/pids/" /usr/local/HBase/conf/hbase-env.sh
+sudo mkdir -p /var/HBase/pids
+sudo chown -R ivanybma /var/HBase/pids
+
+# master only
+echo "<property>"  >> dmy
+echo "<name>hbase.rootdir</name>" >>dmy
+echo "<value>hdfs://192.168.109.171:9000</value>" >>dmy
+echo "</property>" >>dmy
+echo "<property>" >> dmy
+echo "<name>hbase.cluster.distributed</name>" >> dmy
+echo "<value>true</value>" >> dmy
+echo "</property>" >> dmy
+echo "<property>"  >> dmy
+echo "<name>hbase.zookeeper.property.dataDir</name>" >>dmy
+echo "<value>hdfs://192.168.109.171:9000/zookeeper</value>" >>dmy
+echo "</property>" >>dmy
+echo "<property>"  >> dmy
+echo "<name>hbase.zookeeper.quorum</name>" >>dmy
+echo "<value>192.168.109.171, 192.168.109.173, 192.168.109.172</value>" >>dmy
+echo "</property>" >>dmy
+echo "<property>"  >> dmy
+echo "<name>hbase.zookeeper.property.clientPort</name>" >>dmy
+echo "<value>2181</value>" >>dmy
+echo "</property>" >>dmy
+sed -i '/<configuration>/r dmy' /usr/local/HBase/conf/hbase-site.xml
+rm dmy
+echo "192.168.109.171" >>dmy
+echo "192.168.109.173"  >> dmy
+echo "192.168.109.172" >>dmy
+cat dmy > $HBASE_HOME/conf/regionservers
+rm dmy
+#only for slave nodes:
+#echo "<property>"  >> dmy
+#echo "<name>hbase.rootdir</name>" >>dmy
+#echo "<value>hdfs://192.168.109.171:9000</value>" >>dmy
+#echo "</property>" >>dmy
+#echo "<property>" >> dmy
+#echo "<name>hbase.cluster.distributed</name>" >> dmy
+#echo "<value>true</value>" >> dmy
+#echo "</property>" >> dmy
+#sed -i '/<configuration>/r dmy' /usr/local/HBase/conf/hbase-site.xml

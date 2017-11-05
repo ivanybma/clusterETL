@@ -25,3 +25,7 @@ sudo sed -i -e "s/.*192-168-109-153/$worker2 192-168-109-153/" /etc/hosts
 sed -i -e "1s/.*/$worker1/" $SPARK_HOME/conf/slaves
 sed -i -e "2s/.*/$worker2/" $SPARK_HOME/conf/slaves
 
+sed -i -e "26s/\(<value>hdfs:\/\/\).*/\1$master\:9000<\/value\>/" $HBASE_HOME/conf/hbase-site.xml
+sed -i -e "34s/\(<value>hdfs:\/\/\).*/\1$master\:9000\/zookeeper<\/value\>/" $HBASE_HOME/conf/hbase-site.xml
+iplst=$master,' '$worker1,' '$worker2
+sed -i -e "38s/\(<value>\).*/\1$iplst<\/value\>/" $HBASE_HOME/conf/hbase-site.xml
