@@ -12,13 +12,13 @@ sudo chown -R ivanybma /var
 sudo sed -i -e "s/# export JAVA_HOME=.*/export JAVA_HOME=\/usr/" /usr/local/HBase/conf/hbase-env.sh
 sudo sed -i -e "s/# export HBASE_MANAGES_ZK=true/export HBASE_MANAGES_ZK=true/" /usr/local/HBase/conf/hbase-env.sh
 sudo sed -i -e "s/# export HBASE_PID_DIR=\/var\/hadoop\/pids/export HBASE_PID_DIR=\/var\/hadoop\/pids/" /usr/local/HBase/conf/hbase-env.sh
-sudo mkdir -p /var/HBase/pids
-sudo chown -R ivanybma /var/HBase/pids
+sudo mkdir -p /var/hbase/pids
+sudo chmod -R 777 /var/hbase/pids
 
 # master only
 #echo "<property>"  >> dmy
 #echo "<name>hbase.rootdir</name>" >>dmy
-#echo "<value>hdfs://192.168.109.171:9000</value>" >>dmy
+#echo "<value>hdfs://192.168.109.171:9000/hbase</value>" >>dmy
 #echo "</property>" >>dmy
 #echo "<property>" >> dmy
 #echo "<name>hbase.cluster.distributed</name>" >> dmy
@@ -46,7 +46,7 @@ sudo chown -R ivanybma /var/HBase/pids
 #only for slave nodes:
 echo "<property>"  >> dmy
 echo "<name>hbase.rootdir</name>" >>dmy
-echo "<value>hdfs://192.168.109.171:9000</value>" >>dmy
+echo "<value>hdfs://192.168.109.171:9000/hbase</value>" >>dmy
 echo "</property>" >>dmy
 echo "<property>" >> dmy
 echo "<name>hbase.cluster.distributed</name>" >> dmy

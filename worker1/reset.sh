@@ -25,4 +25,4 @@ sed -i -e "24s/\".*\"/\"$master\"/" $SPARK_HOME/conf/spark-env.sh
 
 #sed -i -e "1s/.*/$worker1/" $SPARK_HOME/conf/slaves
 #sed -i -e "2s/.*/$worker2/" $SPARK_HOME/conf/slaves
-sed -i -e "26s/\(<value>hdfs:\/\/\).*/\1$master\:9000<\/value\>/" $HBASE_HOME/conf/hbase-site.xml
+sed -i -e "26s/\(<value>hdfs:\/\/\).*/\1$master\:9000\/hbase<\/value\>/" $HBASE_HOME/conf/hbase-site.xml
